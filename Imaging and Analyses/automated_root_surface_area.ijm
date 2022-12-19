@@ -28,8 +28,17 @@ run("Remove Outliers...", "radius=10 threshold=100 which=Bright");
 run("Convert to Mask");
 run("Watershed");
 
-makeOval(736, -16, 2936, 2925);
-run("Analyze Particles...", "size=50-1800 summarize");
+run("Remove Outliers...", "radius=5 threshold=50 which=Dark");
+
+
+//run("Watershed");
+
+
+waitForUser("Please draw a ROI on the area of interest. Please exclude the edges of the plate including bits of parafilm and click 'OK'.");
+
+
+run("Analyze Particles...", "size=250-5000 circularity=0.65-1.00 show=[Outlines] summarize add");
+
 
 name_string = file;
 tiff_string = '.tiff';
